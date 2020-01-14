@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    这是特指用于web开发的模板引擎， 是为了使**用于界面 
+    模板引擎不关心你的字符串内容，只关心自己能认识的模板标记语法，例如 {{}}
+    {{}}语法被称为mustache语法，八字胡
+  -->
+  <script src="node_modules/art-template/lib/template-web.js"></script>
+  <script type="text.template" id='tpl'>
+    hello {{name}}
+  </script>
+  <script>
+    let ret = template('tpl', {
+      name: 'Jack'
+    })
+    console.log(ret)
+  </script>
+</body>
+</html>
