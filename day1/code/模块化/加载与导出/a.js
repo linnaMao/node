@@ -5,6 +5,7 @@
 //  在每个文件模块中都提供了一个对象： exports
 //  exports默认是一个空对象
 //  需要做的是将所有需要被外部访问的成员加载到exports中
+
 let ret = require('./b')
 
 console.log(ret.add(10, 20))
