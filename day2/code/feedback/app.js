@@ -34,7 +34,7 @@ http
     // 单独获取不包含查询字符串的路径（该路径不包含？之后的信息）
     const pathname = parseObj.pathname
     if (pathname === '/') {
-      fs.readFile('./view/index.html', (err, data) => {
+      fs.readFile('./views/index.html', (err, data) => {
         if (err) {
           return res.end('404 Not Found')
         }
@@ -44,7 +44,7 @@ http
         res.end(htmlStr)
       })
     } else if (pathname === '/post') {
-      fs.readFile('./view/post.html', (err, data) => {
+      fs.readFile('./views/post.html', (err, data) => {
         if (err) {
           return res.end('404 Not Found')
         }
@@ -80,7 +80,7 @@ http
       res.setHeader('Location', '/')
       res.end()
     } else {
-      fs.readFile('./view/404.html', (err, data) => {
+      fs.readFile('./views/404.html', (err, data) => {
         if (err) {
           return res.end('404 Not Found')
         }
