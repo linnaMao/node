@@ -25,7 +25,4 @@
 
 // 模块查找机制：
 
-
-
-
 let template = require('art-template')
