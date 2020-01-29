@@ -8,14 +8,20 @@
 </head>
 <body>
   <script>
-    var xhr = new XMLHttpRequest();
-    xhr.open("get",'https://jsonplaceholder.typicode.com/posts', true);
-    xhr.send(null);
-    xhr.onreadystatechange = function(){
-    if(xhr.status == 200 && xhr.readyState == 4){ 
-      console.log(xhr.responseText)
+    function get(url, callback) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("get",url, true);
+      xhr.send(null);
+      xhr.onreadystatechange = function(){
+      if(xhr.status == 200 && xhr.readyState == 4){ 
+        console.log(xhr.responseText)
+        }
+      }  
     }
-    }  
+
+    get('https://jsonplaceholder.typicode.com/posts', () => {
+      console.log(data)
+    })
   </script>
 </body>
 </html>

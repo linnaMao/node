@@ -53,14 +53,27 @@ const admin = new User({
 
 // 查询数据
 // 查询所有
-// User.find((err, ret) => {
-//   if (err) {
-//     console.log('查询失败')
-//   } else {
-//     console.log('查询成功')
-//     console.log(ret)
-//   }
-// })
+// User.find()
+//   .then((data) => {
+//     console.log(data)
+//   })
+
+User.findOne({
+  username: 'admin'
+})
+.then((user) => {
+  if (user) {
+    console.log('用户已存在')
+  } else {
+    return new User({
+      username: 'aaa',
+      password: '123',
+      email: 'dadada'
+    }).save((err, data) => {
+      console.log(data)
+    })
+  }
+})
 
 // 查询部分
 // findOne为查询一个，如果没有条件则查询第一个
