@@ -9,7 +9,7 @@
  */
 
 const fs = require('fs')
-const students = require('./students')
+const Student = require('./students')
 
 // Express提供了更好的方式，专门用来包装路由
 const express = require('express')
@@ -22,7 +22,7 @@ router.get('/students', (req, res) => {
   // readfile的第二个参数 传入utf8就是告诉他把读取到的文件直接按照utf8编码转成我们能认识的字符
   // 除了这样来转换之外，也可以通过data.toString()的方式
 
-  students.find((err, students) => {
+  Student.find((err, students) => {
     if (err) {
       return res.status(500).send('Server error')
     }
@@ -51,7 +51,7 @@ router.post('/students/new', (req, res) => {
   // 然后往对象中push
   // 然后把对象转为字符串
   // 再将字符串写入文件中
-  students.save(req.body, (err) => {
+  new Student(req.body).save((err) => {
     if (err) {
       return res.status(500).send('Server error')
     }
@@ -64,9 +64,9 @@ router.get('/students/edit', (req, res) => {
   // 2、获取要编辑的学生的id
   // 3、渲染编辑页面
   //  根据id将学生信息查出来
-  students.findById(parseInt(req.query.id), (err, student) => {
+  Student.findById(req.query.id, (err, student) => {
     if (err) {
-      res.status(500).send('Server error')
+      return res.status(500).send('Server error')
     }
     res.render('edit.html', {
       student: student
@@ -79,7 +79,7 @@ router.post('/students/edit', (req, res) => {
   // 2、更新
   //  students.update()
   // 3、发送响应
-  students.updateById(req.body, (err) => {
+  Student.findByIdAndUpdate(req.body.id, req.body, (err) => {
     if (err) {
      return res.status(500).send('Server error')
     }
@@ -88,13 +88,13 @@ router.post('/students/edit', (req, res) => {
 })
 
 router.get('/students/delete', (req, res) => {
-  console.log(req.query.id)
-  students.deleteById(JSON.parse(req.query.id), (err) => {
+  Student.findByIdAndDelete(req.query.id, (err) => {
     if (err) {
       return res.status(500).send('Server error')
     }
     res.redirect('/students')
   })
+  
 })
 
 // 3、把router导出
