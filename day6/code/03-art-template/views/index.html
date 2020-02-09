@@ -1,0 +1,15 @@
+{{extend './layout.html'}}
+
+{{ block 'content' }}
+  <h1 id="content">列表页自己的内容</h1>
+{{ /block }}
+
+{{ block 'script' }}
+<script>
+  const content = document.getElementById('content')
+
+  content.onclick = () => {
+    alert('hello world')
+  }
+</script>
+{{ /block }}
